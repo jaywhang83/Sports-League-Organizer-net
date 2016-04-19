@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "To Do List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model SportsLeagueOrganizer.Models.Team
+
+<h2>Create</h2>
+<hr />
+<h4>Add a new team</h4>
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.Name)
+    @Html.TextBoxFor(model => model.Name)
+    <input type="submit" value="Add new team" />
+}
+<p>@Html.ActionLink("Back to list", "Index")</p>

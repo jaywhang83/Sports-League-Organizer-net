@@ -1,19 +1,19 @@
-﻿@model IEnumerable<SportsLeagueOrganizer.Models.Team>
+﻿@{
+    ViewData["Title"] = "To Do List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-<html>
-<head>
-    <title>Sports League Organizer!!</title>
-</head>
-<body>
-    <h2>Sports League Organizer!!</h2>
-    <h4>@Html.DisplayNameFor(model => model.Name)</h4>
-    <ul>
-        @foreach (var listTeam in Model)
-        {
-            <li>@Html.DisplayFor(modelTeam => listTeam.Name)
-                | @Html.ActionLink("Details", "Details", new { id = listTeam.TeamId })
-            </li>
-        }
-    </ul>
-</body>
-</html>
+@model IEnumerable<SportsLeagueOrganizer.Models.Team>
+
+<h2>Sports League Organizer!!</h2>
+<h4>@Html.DisplayNameFor(model => model.Name)</h4>
+<ul>
+    @foreach (var listTeam in Model)
+    {
+        <li>@Html.DisplayFor(modelTeam => listTeam.Name)
+            | @Html.ActionLink("Details", "Details", new { id = listTeam.TeamId })
+            | @Html.ActionLink("Edit", "Edit", new { id = listTeam.TeamId }) | @Html.ActionLink("Delete", "Delete", new { id = listTeam.TeamId })
+        </li>
+    }
+</ul>
+<p>@Html.ActionLink("Add new team", "Create")</p>
