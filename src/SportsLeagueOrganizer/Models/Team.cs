@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SportsLeagueOrganizer.Models
 {
+    [Table("Teams")]
     public class Team
     {
         [Key]

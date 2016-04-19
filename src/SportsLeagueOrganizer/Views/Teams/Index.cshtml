@@ -2,15 +2,17 @@
 
 <html>
 <head>
-    <title>To Do List</title>
+    <title>Sports League Organizer!!</title>
 </head>
 <body>
-    <h2>To Do List</h2>
+    <h2>Sports League Organizer!!</h2>
     <h4>@Html.DisplayNameFor(model => model.Name)</h4>
     <ul>
-        @foreach (var listItem in Model)
+        @foreach (var listTeam in Model)
         {
-            <li>@Html.DisplayFor(modelItem => listItem.Name)</li>
+            <li>@Html.DisplayFor(modelTeam => listTeam.Name)
+                | @Html.ActionLink("Details", "Details", new { id = listTeam.TeamId })
+            </li>
         }
     </ul>
 </body>

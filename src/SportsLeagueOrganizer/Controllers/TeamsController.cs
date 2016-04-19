@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Microsoft.AspNet.Mvc;
 using SportsLeagueOrganizer.Models;
 
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace SportsLeagueOrganizer.Controllers
 {
@@ -17,5 +13,13 @@ namespace SportsLeagueOrganizer.Controllers
         {
             return View(db.Teams.ToList());
         }
+
+        public IActionResult Details(int id)
+        {
+            var thisTeam = db.Teams.FirstOrDefault(x => x.TeamId == id);
+            return View(thisTeam);
+        }
     }
 }
+
+
