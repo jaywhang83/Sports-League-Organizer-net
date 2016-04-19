@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Mvc;
 using SportsLeagueOrganizer.Models;
 using Microsoft.Data.Entity;
+using Microsoft.AspNet.Mvc.Rendering;
 
 namespace SportsLeagueOrganizer.Controllers
 {
@@ -11,7 +12,7 @@ namespace SportsLeagueOrganizer.Controllers
         private SportsLeagueOrganizerContext db = new SportsLeagueOrganizerContext();
         public IActionResult Index()
         {
-            return View(db.Teams.ToList());
+            return View(db.Teams.Include(x => x.Division).ToList());
         }
 
         public IActionResult Details(int id)
@@ -21,13 +22,14 @@ namespace SportsLeagueOrganizer.Controllers
         }
 
         //New Team
-        public IActionResult Create()
+        public ActionResult Create()
         {
+            ViewBag.DivisionId = new SelectList(db.Divisions, "DivisionId", "Name");
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(Team team)
+        public ActionResult Create(Team team)
         {
             db.Teams.Add(team);
             db.SaveChanges();
@@ -35,14 +37,15 @@ namespace SportsLeagueOrganizer.Controllers
         }
 
         //Edit Team
-        public IActionResult Edit(int id)
+        public ActionResult Edit(int id)
         {
             var thisTeam = db.Teams.FirstOrDefault(x => x.TeamId == id);
+            ViewBag.DivisionId = new SelectList(db.Divisions, "DivisionId", "Name"); 
             return View(thisTeam);
         }
 
         [HttpPost]
-        public IActionResult Edit(Team team)
+        public ActionResult Edit(Team team)
         {
             db.Entry(team).State = EntityState.Modified;
             db.SaveChanges();
@@ -50,14 +53,14 @@ namespace SportsLeagueOrganizer.Controllers
         }
 
         //Delete Team
-        public IActionResult Delete(int id)
+        public ActionResult Delete(int id)
         {
             var thisTeam = db.Teams.FirstOrDefault(x => x.TeamId == id);
             return View(thisTeam);
         }
 
         [HttpPost, ActionName("Delete")]
-        public IActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
             var thisTeam = db.Teams.FirstOrDefault(x => x.TeamId == id);
             db.Teams.Remove(thisTeam);

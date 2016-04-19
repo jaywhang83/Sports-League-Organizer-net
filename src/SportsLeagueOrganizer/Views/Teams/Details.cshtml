@@ -1,12 +1,14 @@
 ﻿
-@{
-    ViewData["Title"] = "To Do List";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
 @model SportsLeagueOrganizer.Models.Team
 
-
-<h2>Details</h2>
+@{
+    ViewData["Title"] = "Team - Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Team Details</h2>
 <hr />
-@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)
-<p>@Html.ActionLink("Back to list", "Index")</p>
+
+<p>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</p>
+<p>@Html.DisplayNameFor(model => model.DivisionId) : @Html.DisplayFor(model => model.DivisionId)</p>
+
+<p>@Html.ActionLink("Edit", "Edit", new { id = Model.TeamId }) | @Html.ActionLink("Back to List", "Index")</p>

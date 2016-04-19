@@ -1,19 +1,40 @@
 ﻿@{
-    ViewData["Title"] = "To Do List";
+    ViewData["Title"] = "Sports League Organizer";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @model IEnumerable<SportsLeagueOrganizer.Models.Team>
 
-<h2>Sports League Organizer!!</h2>
-<h4>@Html.DisplayNameFor(model => model.Name)</h4>
-<ul>
+<h2>Sports League Organizer</h2>
+<hr />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Division.Name)
+        </th>
+        <th></th>
+    </tr>
+
     @foreach (var listTeam in Model)
     {
-        <li>@Html.DisplayFor(modelTeam => listTeam.Name)
-            | @Html.ActionLink("Details", "Details", new { id = listTeam.TeamId })
-            | @Html.ActionLink("Edit", "Edit", new { id = listTeam.TeamId }) | @Html.ActionLink("Delete", "Delete", new { id = listTeam.TeamId })
-        </li>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelTeam => listTeam.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelTeam => listTeam.Division.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = listTeam.TeamId }) |
+                @Html.ActionLink("Details", "Details", new { id = listTeam.TeamId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = listTeam.TeamId })
+            </td>
+        </tr>
     }
-</ul>
-<p>@Html.ActionLink("Add new team", "Create")</p>
+</table>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>

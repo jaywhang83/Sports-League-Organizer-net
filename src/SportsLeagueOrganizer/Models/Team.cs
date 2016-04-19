@@ -13,5 +13,7 @@ namespace SportsLeagueOrganizer.Models
         [Key]
         public int TeamId { get; set; }
         public string Name { get; set; }
+        public int DivisionId { get; set; }
+        public virtual Division Division { get; set; }
     }
 }
